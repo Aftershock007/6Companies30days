@@ -1,0 +1,22 @@
+Leetcode- 1497
+
+class Solution {
+public:
+    bool canArrange(vector<int>& arr, int k) {
+        ios_base::sync_with_stdio(false); 
+        cin.tie(NULL);
+        map<int,int> mp;
+        for(int x : arr){
+            int val = (x%k+k)%k; 
+            mp[val]++;
+        }
+        for(auto it:mp){
+            int val=it.first;
+            if(mp[val] != mp[(k-val)%k])
+                return false;
+            if(val == (k-val)%k and mp[val]&1)
+                return false; 
+        }
+        return true;
+    }
+};

@@ -1,0 +1,26 @@
+GFG- Number following pattern
+class Solution{   
+public:
+    string printMinNumberForPattern(string s){
+        int n=s.size(),count=1;
+        string ans;
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            if(s[i]=='D')
+                st.push(count++);
+            if(s[i]=='I'){
+                st.push(count++);
+                while(!st.empty()){
+                    ans.push_back(st.top()+'0');
+                    st.pop();
+                }
+            }
+        }
+        st.push(count);
+        while(!st.empty()){
+            ans.push_back(st.top()+'0');
+            st.pop();
+        }
+        return ans;
+    }
+};

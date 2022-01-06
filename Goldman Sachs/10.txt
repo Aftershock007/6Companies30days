@@ -1,0 +1,32 @@
+Leetcode- 912
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        
+        int n=nums.size();
+        int max=*max_element(nums.begin(),nums.end());
+        int min=*min_element(nums.begin(),nums.end());
+        int range=max-min+1;
+        vector<int> farr(range);
+        for(int i=0;i<n;i++){
+            int idx=nums[i]-min; 
+            farr[idx]++;
+        }
+        for(int i=1;i<farr.size();i++){
+            farr[i]=farr[i]+farr[i-1];
+        }
+        vector<int> ans(n);
+        for(int i=n-1;i>=0;i--){
+            int val=nums[i];
+            int pos=farr[val-min];
+            int idx=pos-1;
+            ans[idx]=val;
+            farr[val-min]--;
+        }
+        return ans;
+    }
+};
