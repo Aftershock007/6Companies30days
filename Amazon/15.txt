@@ -1,0 +1,20 @@
+GFG- Delete N nodes after M nodes of a linked list
+
+class Solution{
+    public:
+    void linkdelete(Node *head, int M, int N){
+        Node *curr = head, *t; 
+        int count; 
+        while (curr) {  
+            for (count = 1; count < M && curr!= NULL; count++) 
+                curr = curr->next;
+            if (!curr) 
+                return; 
+            t = curr->next; 
+            for (count = 1; count<=N && t!= NULL; count++) 
+                t = t->next; 
+            curr->next = t; 
+            curr = t; 
+        }
+    }
+};

@@ -1,0 +1,19 @@
+Leetcode- 168
+
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string s;
+        while(n){
+            int x=n%26;
+            n/=26;
+            if(x<=0){ 
+                x+=26; 
+                n--;
+            }
+            s.push_back('A'+x-1);
+        }
+        reverse(s.begin(),s.end());
+        return s;
+    }
+};

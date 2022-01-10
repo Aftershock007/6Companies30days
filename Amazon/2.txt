@@ -1,0 +1,25 @@
+Leetcode- 845
+
+class Solution {
+public:
+    int longestMountain(vector<int>& arr) {
+        ios_base::sync_with_stdio(false); 
+        cin.tie(NULL);
+        int i=1,n=arr.size(),ans=0;
+        while(i<n){
+            int inc=0,dec=0;
+            while(i<n&&arr[i]==arr[i-1]) i++;
+            while(i<n&&arr[i]>arr[i-1]){
+                i++;
+                dec++;
+            }
+            while(i<n&&arr[i]<arr[i-1]){
+                i++;
+                inc++;
+            }
+            if(inc>0&&dec>0)
+                ans=max(ans,inc+dec+1);
+        }
+        return ans;
+    }
+};
