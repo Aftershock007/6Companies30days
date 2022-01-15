@@ -1,0 +1,28 @@
+Leetcode- 207
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {  
+        vector<vector<int>> g(numCourses);      
+        for(auto e: prerequisites) 
+            g[e[0]].push_back(e[1]);
+        vector<int> vis(numCourses, 0);
+        for(int i=0;i<numCourses;i++)
+        if(vis[i] == 0 && detectCycle(g, vis, i) == true)
+            return false;
+        return true;
+    }
+    bool detectCycle(vector<vector<int>>& g, vector<int>& vis, int src){
+        if(vis[src] == 2)
+            return false;
+        vis[src] = 1;
+        for(auto node: g[src]) {
+            if(vis[node] == 1)
+                return true;
+            if(detectCycle(g, vis, node))
+                return true;
+        }       
+        vis[src] = 2;
+        return false;
+    }
+};

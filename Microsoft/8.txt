@@ -1,0 +1,26 @@
+Leetcode- 116
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if (!root) return nullptr;
+        queue<Node *> qt;
+        qt.push(root);
+        while (!qt.empty()) {
+            int n = qt.size();
+            while (n--) {
+                Node *temp = qt.front();
+                qt.pop();
+                Node *nextAdd=qt.front();
+                temp->next = nextAdd;
+                if (n == 0)
+                    temp->next = nullptr;
+                if (temp->left)
+                    qt.push(temp->left);
+                if (temp->right)
+                    qt.push(temp->right);
+            }
+        }
+        return root;
+    }
+};

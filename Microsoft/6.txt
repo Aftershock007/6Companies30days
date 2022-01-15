@@ -1,0 +1,24 @@
+Leetcode- 17
+
+class Solution {
+    vector<string> mapp = {"", "","abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}, ans;
+public:
+    void solve(string &digits,int i,string &comb){
+        if(i==digits.size()){
+            ans.push_back(comb);
+            return;
+        }
+        string val=mapp[digits[i]-'0'];
+        for(auto &it:val){
+            comb.push_back(it);
+            solve(digits,i+1,comb);
+            comb.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits=="") return ans;
+        string comb;
+        solve(digits,0,comb);
+        return ans;
+    }
+};
