@@ -1,0 +1,25 @@
+Leetcode- 8
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        int i=0,n=s.size(),neg=0;
+        long long ans=0;
+        while(s[i]==' ') i++;
+        if(s[i]=='+') i++;
+        else if(s[i]=='-'){
+            neg=1;
+            i++;
+        }
+        while(isdigit(s[i])){
+            ans=ans*10+(s[i]-'0');
+            if(ans>=INT_MAX && !neg) 
+                return INT_MAX; 
+            else if(ans>INT_MAX && neg) 
+                return INT_MIN; 
+            i++;
+        }
+        if(neg) ans*=(-1);
+        return (int)ans;
+    }
+};

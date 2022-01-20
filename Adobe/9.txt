@@ -1,0 +1,19 @@
+GFG- Next higher palindromic number using the same set of digits
+
+class Solution{
+  public:
+    string nextPalin(string s) { 
+        int n=s.size(),mid=n/2;
+        string ans;
+        if(n<=3) return "-1"; 
+        string first=s.substr(0,mid);
+        string temp=first;
+        next_permutation(first.begin(),first.end());
+        if(first<=temp) return "-1"; // If new string is smaller then return -1
+        ans+=first;
+        if(n&1) ans+=s[mid];
+        reverse(first.begin(),first.end());
+        ans+=first;
+        return ans;
+    }
+};

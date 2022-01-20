@@ -1,0 +1,17 @@
+GFG- Subarray with given sum
+
+class Solution {
+    public:
+    vector<int> subarraySum(int arr[], int n, long long s) {
+        long long l=0,r=0,curr_sum=0;
+        while(l<=r&&r<=n) {
+            if(curr_sum<s)
+                curr_sum+=arr[r++];
+            else if(curr_sum>s)
+                curr_sum-=arr[l++];
+            else 
+                return vector<int> {l+1,r};
+        }
+        return vector<int> {-1};
+    }
+};

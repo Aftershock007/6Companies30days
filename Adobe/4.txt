@@ -1,0 +1,21 @@
+Leetcode- 416
+
+class Solution {
+public:
+    unordered_map<string,bool> dp;
+    bool solve(vector<int>& nums,int sum,int i,int n){
+        string s=to_string(i)+"_"+to_string(sum);
+        if(sum<0||i==n) return false;
+        if(sum==0) return true;
+        if(dp.find(s)!=dp.end()) return dp[s];
+        return dp[s]=solve(nums,sum-nums[i],i+1,n)||solve(nums,sum,i+1,n); 
+        // (Include the element and sum=sum-nums[i] && i=i+1 || Exclude the element and i=i+1)
+    }
+    bool canPartition(vector<int>& nums) {
+        int n=nums.size(),sum=0;
+        for(int i=0;i<n;i++)
+            sum+=nums[i];
+        if(sum&1) return false;
+        return solve(nums,sum/2,0,n);
+    } 
+};
