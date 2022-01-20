@@ -19,9 +19,9 @@ public:
             left[sz].push_back(l);
             right[sz].push_back(r);
         }
-        for(int sz=0; sz<=N; ++sz){
+        for(int sz=0; sz<=N; ++sz)
             sort(right[sz].begin(), right[sz].end());
-        }
+
         res = min(abs(sum-2*left[N][0]), abs(sum-2*right[N][0]));
         for(int sz=1; sz<N; ++sz){
             for(auto &a : left[sz]){
