@@ -1,0 +1,20 @@
+GFG- Number of distict Words with k maximum contiguous vowels 
+
+class Solution{
+    public:
+    int dp[1001][1001];
+    int mod=1000000007;
+    long long solve(int n,int k,int count){
+        if(n==0) return 1;
+        if(dp[n][count]!=-1) 
+            return dp[n][count];
+        if(count<k)
+            return dp[n][count]=(21*solve(n-1,k,0)+5*solve(n-1,k,count+1))%mod;
+        if(count==k)
+            return dp[n][count]=(21*solve(n-1,k,0))%mod;
+    }
+    int kvowelwords(int n, int k) {
+        memset(dp,-1,sizeof(dp));
+        return solve(n,k,0);
+    }
+};

@@ -1,4 +1,5 @@
 GFG: Find the position of M-th item
+
 class Solution {
   public:
     int findPosition(int N , int M , int K) {
