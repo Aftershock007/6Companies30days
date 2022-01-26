@@ -1,0 +1,47 @@
+Leetcode- 1536
+
+class Solution {
+public:
+    int zerosAtEnd(vector<int> &a) {
+        int ans = 0;
+        int n = a.size();
+        int i=n-1;
+        while (i >= 0 && a[i] == 0) {
+            ans++;
+            i--;
+        } 
+        return ans;
+    }
+    vector<int> gridToVec(vector<vector<int>>& grid) {
+        vector<int> ans;
+        for (auto &x: grid) {
+            ans.push_back(zerosAtEnd(x));
+        }
+        return ans;
+    }
+    int minSwaps(vector<int> &a) {
+        int n = a.size();
+        int ans = 0;
+        for (int i=0; i<n; i++) {
+            if (a[i] < (n-i-1)) {
+                int j=i;
+                while (j < n && a[j] < (n-i-1)) {
+                    j++;
+                }
+                if (j == n) {     // Did not find any number greater than or equal to n-i-1.
+                    return -1;    // so its impossible to get the answer.
+                }
+                while (j>i) {
+                    swap(a[j], a[j-1]);
+                    ans++;
+                    j--;
+                }
+            }
+        }
+        return ans;
+    }    
+    int minSwaps(vector<vector<int>>& grid) {
+        vector<int> a = gridToVec(grid);
+        return minSwaps(a);
+    }
+};

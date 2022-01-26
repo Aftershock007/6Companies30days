@@ -1,0 +1,28 @@
+GFG- Largest number in K swaps
+
+class Solution{
+    public:
+    void solve(string s,string &ans,int pos,int k){
+        if(k==0) return;
+        int n=s.size();
+        char mx=s[pos];
+        for(int i=pos+1;i<n;i++){
+            if(mx<s[i])
+                mx=s[i];
+        }
+        if(mx!=s[pos]) k--;
+        for(int i=n-1; i>=pos ;i--){
+            if(s[i] == mx){
+                swap(s[i], s[pos]);
+                if(s>ans) ans = s;
+                solve(s, ans, pos+1,k);
+                swap(s[i], s[pos]);
+            }
+        }
+    }
+    string findMaximumNum(string str, int k) {
+        string ans=str;
+        solve(str,ans,0,k);
+        return ans;
+    }
+};

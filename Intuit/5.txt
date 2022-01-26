@@ -1,0 +1,33 @@
+Leetcode- 410
+
+class Solution {
+public:
+    bool isPossible(vector<int>& wt, int d,int mid){
+        int day=1,sum=0;
+        for(int i=0;i<wt.size();i++){
+            sum+=wt[i];
+            if(sum>mid){
+                day++;
+                sum=wt[i];
+            }
+        }
+        return day<=d;
+    }
+    int splitArray(vector<int>& wt, int d) {
+        int sum=0,mx=0;
+        for(int it:wt){
+            sum+=it;
+            mx=max(mx,it);
+        }
+        int low=mx,high=sum,ans;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(isPossible(wt,d,mid)){
+                ans=mid;
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        return ans;
+    }
+};
