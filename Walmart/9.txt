@@ -1,0 +1,20 @@
+Leetcode- 375
+
+class Solution {
+public:
+    int dp[201][201];
+    int helper(int l, int r){
+        if(l>=r) return 0;
+        if(dp[l][r]!=0)
+            return dp[l][r];
+        int ans = INT_MAX;
+        for(int x=l; x<=r; x++){
+            ans = min(ans, x + max(helper(l, x-1), helper(x+1, r)) );
+        }
+        return dp[l][r] = ans;
+    }
+    int getMoneyAmount(int n) {
+        memset(dp, 0, sizeof(dp));
+        return helper(1, n);  
+    }
+};
